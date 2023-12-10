@@ -6,7 +6,7 @@
 	excludesfile = ~/.gitignore_global
 	editor = nvim
 [commit]
-	template = /Users/james/.stCommitMsg
+	template = ~/.stCommitMsg
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
