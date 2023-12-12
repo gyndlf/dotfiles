@@ -12,6 +12,7 @@ brew "ripgrep"
 brew "tmux"
 brew "yadm"
 brew "yt-dlp"
+brew "juliaup"
 
 cask "1password-cli"
 cask "aldente"

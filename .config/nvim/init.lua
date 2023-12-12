@@ -20,6 +20,9 @@ vim.g.maplocalleader = ","
 
 vim.keymap.set('n', '<leader><esc>', ':noh<return><esc>', { desc = 'Hit leader escape to stop highlighting from search' }) -- Conflicts with escaping telescope
 
+-- Setup the internal terminal (mostly used by iron.nvim)
+vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { desc = 'Exit insert terminal mode' })
+vim.keymap.set('n', '<leader>t', ':edit term://zsh', { desc = 'Start a terminal session' })
 
 -- Install Lazy.nvim for plugin management. Bootstrap it to install itself
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -65,6 +68,7 @@ require("lazy").setup({
     {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
     {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' }},
     'lervag/vimtex',
+    'Vigemus/iron.nvim'  -- Configure in each filetype
 })
 
 -- Specific plugin management
@@ -120,3 +124,33 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+-- REPL integration (iron.nvim)
+require('iron.core').setup {
+    config = {
+        repl_definition = {
+            julia = {
+                command = {"julia", "--proj=."}
+            }
+        },
+        repl_open_cmd = require('iron.view').split.vertical.botright("40%"),
+    },
+    keymaps = {
+        visual_send = "<space>sv",
+        send_file = "<space>sf",
+        cr = "<space>s<cr>",
+        interrupt = "<space>s<space>",
+        exit = "<space>sq",
+        clear = "<space>sc",
+    },
+    highlight = {
+        italic = true
+    },
+    ignore_blank_lines = true,
+}
+
+vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
+vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
+vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
+vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+
