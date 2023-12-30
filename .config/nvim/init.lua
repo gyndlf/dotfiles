@@ -68,7 +68,9 @@ require("lazy").setup({
     {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
     {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' }},
     'lervag/vimtex',
-    'Vigemus/iron.nvim'  -- Configure in each filetype
+    'Vigemus/iron.nvim',  -- Configure in each filetype
+    'JuliaEditorSupport/julia-vim',
+    'andymass/vim-matchup'
 })
 
 -- Specific plugin management
@@ -112,6 +114,9 @@ require('nvim-treesitter.configs').setup {
         scope_incremental = "grc",
         node_decremental = "grm",
       },
+    },
+    matchup = {
+        enable = true
     },
 }
 
