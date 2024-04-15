@@ -126,3 +126,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<< 
+
+# Enabled zoxide
+eval "$(zoxide init zsh)"
+alias cd=z
+

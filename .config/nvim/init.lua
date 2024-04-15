@@ -9,6 +9,7 @@ vim.opt.timeout = false
 
 vim.cmd([[
 filetype plugin indent on	" show existing tab with 4 spaces width
+let g:vimtex_view_method = 'skim'   " Use "Skim.app" instead of "Preview.app" for latex
 ]])
 vim.opt.tabstop = 4		-- when indenting with '>', use 4 spaces width
 vim.opt.shiftwidth = 4		-- On pressing tab, insert 4 spaces
@@ -70,7 +71,8 @@ require("lazy").setup({
     'lervag/vimtex',
     'Vigemus/iron.nvim',  -- Configure in each filetype
     'JuliaEditorSupport/julia-vim',
-    'andymass/vim-matchup'
+    'andymass/vim-matchup',
+    'L3MON4D3/LuaSnip',
 })
 
 -- Specific plugin management
@@ -159,3 +161,20 @@ vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
 vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
 vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 
+-- Activate the snippets (mainly for latex)
+-- Uses the "SnipMate-Like" method
+local ls = require("luasnip")
+vim.keymap.set({"i"}, "`", function() ls.expand() end, {silent = true})
+require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
+
+
+-- Set default compilation flags for latex
+vim.g.vimtex_compiler_latexmk = {
+    options = {
+        '-verbose',
+        '-file-line-error',
+        '-synctex=1',
+        '-interaction=nonstopmode',
+        '-shell-escape',
+    },
+}
