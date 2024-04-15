@@ -78,7 +78,7 @@ export PATH=$PATH:/Users/james/.local/bin	# So that we can run lunarvim
 
 # !! Contents within this block are managed by juliaup !!
 
-path=('/Users/james/.juliaup/bin' $path)
+path=('/home/james/.juliaup/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<
@@ -112,17 +112,21 @@ fif() {
 }
 
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/james/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/james/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/james/opt/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/miniconda3/bin:$PATH"
+        export PATH="/home/james/opt/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<< 
+# <<< conda initialize <<<
+
+eval "$(zoxide init zsh)"
+alias cd=z

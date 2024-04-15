@@ -9,6 +9,7 @@ vim.opt.timeout = false
 
 vim.cmd([[
 filetype plugin indent on	" show existing tab with 4 spaces width
+syntax enable
 ]])
 vim.opt.tabstop = 4		-- when indenting with '>', use 4 spaces width
 vim.opt.shiftwidth = 4		-- On pressing tab, insert 4 spaces
@@ -67,7 +68,12 @@ require("lazy").setup({
     'aserowy/tmux.nvim',
     {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
     {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' }},
-    'lervag/vimtex',
+    {'lervag/vimtex',
+        init = function()
+            vim.g.vimtex_view_method = 'zathura'
+            vim.g.vimtex_quickfix_mode = 0
+        end,
+    },
     'Vigemus/iron.nvim',  -- Configure in each filetype
     'JuliaEditorSupport/julia-vim',
     'andymass/vim-matchup'
@@ -158,4 +164,5 @@ vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
 vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
 vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
 vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+
 
