@@ -3,31 +3,17 @@ autoload -U zmv
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME"/.oh-my-zsh"
 
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="dieter"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
 # See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-
-# Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
@@ -36,15 +22,12 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
    export EDITOR='nvim'
  fi
-
-
 
 ZSH_DISABLE_COMPFIX=true
 # As according to https://github.com/ohmyzsh/ohmyzsh/issues/6835
@@ -58,7 +41,6 @@ jhome () {
   echo "java -version:"
   java -version
 }
-
 
 # Get FZF to use ripgrep (fzf use rg)
 if type rg &> /dev/null; then
@@ -78,7 +60,7 @@ export PATH=$PATH:/Users/james/.local/bin	# So that we can run lunarvim
 
 # !! Contents within this block are managed by juliaup !!
 
-path=('/Users/james/.juliaup/bin' $path)
+path=('/home/james/.juliaup/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<
@@ -112,16 +94,17 @@ fif() {
 }
 
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/james/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/james/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/james/opt/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/miniconda3/bin:$PATH"
+        export PATH="/home/james/opt/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

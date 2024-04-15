@@ -10,6 +10,7 @@ vim.opt.timeout = false
 vim.cmd([[
 filetype plugin indent on	" show existing tab with 4 spaces width
 let g:vimtex_view_method = 'skim'   " Use "Skim.app" instead of "Preview.app" for latex
+syntax enable
 ]])
 vim.opt.tabstop = 4		-- when indenting with '>', use 4 spaces width
 vim.opt.shiftwidth = 4		-- On pressing tab, insert 4 spaces
@@ -68,7 +69,12 @@ require("lazy").setup({
     'aserowy/tmux.nvim',
     {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
     {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' }},
-    'lervag/vimtex',
+    {'lervag/vimtex',
+        init = function()
+            vim.g.vimtex_view_method = 'zathura'
+            vim.g.vimtex_quickfix_mode = 0
+        end,
+    },
     'Vigemus/iron.nvim',  -- Configure in each filetype
     'JuliaEditorSupport/julia-vim',
     'andymass/vim-matchup',
@@ -166,7 +172,6 @@ vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 local ls = require("luasnip")
 vim.keymap.set({"i"}, "`", function() ls.expand() end, {silent = true})
 require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
-
 
 -- Set default compilation flags for latex
 vim.g.vimtex_compiler_latexmk = {
