@@ -9,7 +9,6 @@ vim.opt.timeout = false
 
 vim.cmd([[
 filetype plugin indent on	" show existing tab with 4 spaces width
-let g:vimtex_view_method = 'skim'   " Use "Skim.app" instead of "Preview.app" for latex
 syntax enable
 ]])
 vim.opt.tabstop = 4		-- when indenting with '>', use 4 spaces width
@@ -174,6 +173,7 @@ vim.keymap.set({"i"}, "`", function() ls.expand() end, {silent = true})
 require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
 
 -- Set default compilation flags for latex
+vim.g.vimtex_view_method = "skim"  --Use "Skim.app" instead of "Preview.app" for latex
 vim.g.vimtex_compiler_latexmk = {
     options = {
         '-verbose',
@@ -181,5 +181,6 @@ vim.g.vimtex_compiler_latexmk = {
         '-synctex=1',
         '-interaction=nonstopmode',
         '-shell-escape',
+        '-auxdir=build'
     },
 }

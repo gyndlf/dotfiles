@@ -13,7 +13,7 @@ vim.keymap.set('n', '<localleader>f', ':cclose<CR>', {desc = 'Hide the quick fix
 vim.cmd [[
     let g:vimtex_compiler_latexmk_engines = {
         \ '_'           : '-pdf',
-        \ 'pdf_escaped' : '-pdf -pdflatex="pdflatex -shell-escape %O %S"',
+        \ 'pdf_escaped' : '-pdf -pdflatex="pdflatex -shell-escape %O %S"'
     \}
 
 	let g:vimtex_quickfix_open_on_warning = 0  
