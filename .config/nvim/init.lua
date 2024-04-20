@@ -1,5 +1,16 @@
 -- James' NeoVim configuration
 
+-- save in vim.g.os the current os version
+if vim.fn.exists('g:os') == 0 then
+    local is_windows = vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1
+    if is_windows then
+        vim.g.os = "Windows"
+    else
+        local uname_output = vim.fn.system('uname')
+        vim.g.os = string.gsub(uname_output, '\n', '')
+    end
+end
+
 vim.opt.number = true		-- show line numbers and relative numbers
 vim.opt.hlsearch = true		-- highlight all results
 vim.opt.ignorecase = true	-- ignore case in search
@@ -172,15 +183,3 @@ local ls = require("luasnip")
 vim.keymap.set({"i"}, "`", function() ls.expand() end, {silent = true})
 require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
 
--- Set default compilation flags for latex
-vim.g.vimtex_view_method = "skim"  --Use "Skim.app" instead of "Preview.app" for latex
-vim.g.vimtex_compiler_latexmk = {
-    options = {
-        '-verbose',
-        '-file-line-error',
-        '-synctex=1',
-        '-interaction=nonstopmode',
-        '-shell-escape',
-        '-auxdir=build'
-    },
-}
