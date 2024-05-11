@@ -1,6 +1,6 @@
 [user]
-	name = James Zingel
-	email = james@zingel.nz
+	name = gyndlf
+	email = james@zingel.co.nz
 [core]
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
@@ -15,4 +15,4 @@
     a = add
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [github]
-	user = jrzingel
+	user = gyndlf
