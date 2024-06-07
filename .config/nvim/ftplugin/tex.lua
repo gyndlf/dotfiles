@@ -34,6 +34,7 @@ vim.cmd [[
     \}
 
 	let g:vimtex_quickfix_open_on_warning = 1
+    let g:vimtex_latexmk_build_dir = "build"
 	nmap <localleader>v <plug>(vimtex-view)
 	nmap <localleader>c <plug>(vimtex-compile)
 

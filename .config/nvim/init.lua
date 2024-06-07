@@ -18,6 +18,9 @@ vim.opt.incsearch = true	-- show search results as you type
 vim.opt.timeout = false
 -- vim.opt.clipboard = "unnamed"	-- Link p and y to the system clipboard instead of "+p
 
+vim.opt.spelllang = 'en_au'
+vim.opt.spell = true
+
 vim.cmd([[
 filetype plugin indent on	" show existing tab with 4 spaces width
 syntax enable
