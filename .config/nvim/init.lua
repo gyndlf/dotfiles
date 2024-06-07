@@ -79,12 +79,7 @@ require("lazy").setup({
     'aserowy/tmux.nvim',
     {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
     {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' }},
-    {'lervag/vimtex',
-        init = function()
-            vim.g.vimtex_view_method = 'zathura'
-            vim.g.vimtex_quickfix_mode = 0
-        end,
-    },
+    'lervag/vimtex', -- Configure in tex.lua
     'Vigemus/iron.nvim',  -- Configure in each filetype
     'JuliaEditorSupport/julia-vim',
     'andymass/vim-matchup',
