@@ -29,6 +29,11 @@ vim.opt.tabstop = 4		-- when indenting with '>', use 4 spaces width
 vim.opt.shiftwidth = 4		-- On pressing tab, insert 4 spaces
 vim.opt.expandtab = true
 
+-- Use a spell checker
+-- ]s and [s to move between words, z= to get suggestions, zg to add to dictionary
+vim.opt.spelllang = 'en_nz'
+vim.opt.spell = true
+
 vim.g.mapleader = " "	-- Set the leader keybind
 vim.keymap.set('n', '<space>', '<NOP>', { desc = 'Space does nothing. (Except leader)' })
 vim.g.maplocalleader = "," 
@@ -82,16 +87,12 @@ require("lazy").setup({
     'aserowy/tmux.nvim',
     {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate" },
     {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' }},
-    {'lervag/vimtex',
-        init = function()
-            vim.g.vimtex_view_method = 'zathura'
-            vim.g.vimtex_quickfix_mode = 0
-        end,
-    },
+    'lervag/vimtex', -- Configure in tex.lua
     'Vigemus/iron.nvim',  -- Configure in each filetype
     'JuliaEditorSupport/julia-vim',
     'andymass/vim-matchup',
     'L3MON4D3/LuaSnip',
+    'anufrievroman/vim-angry-reviewer',  -- scientific document grammer suggestor
 })
 
 -- Specific plugin management
@@ -162,12 +163,12 @@ require('iron.core').setup {
         repl_open_cmd = require('iron.view').split.vertical.botright("40%"),
     },
     keymaps = {
-        visual_send = "<space>sv",
-        send_file = "<space>sf",
-        cr = "<space>s<cr>",
-        interrupt = "<space>s<space>",
-        exit = "<space>sq",
-        clear = "<space>sc",
+        visual_send = "<leader>sv",
+        send_file = "<leader>sf",
+        cr = "<leader>s<cr>",
+        interrupt = "<leader>s<space>",
+        exit = "<leader>sq",
+        clear = "<leader>sc",
     },
     highlight = {
         italic = true
@@ -175,14 +176,22 @@ require('iron.core').setup {
     ignore_blank_lines = true,
 }
 
-vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')
+vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>')
+vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>')
+vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>')
 
 -- Activate the snippets (mainly for latex)
 -- Uses the "SnipMate-Like" method
 local ls = require("luasnip")
 vim.keymap.set({"i"}, "<Tab>", function() ls.expand() end, {silent = true})
 require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
+
+-- Angry reviewer (grammer)
+vim.g.AngryReviewerEnglish = 'british'
+vim.keymap.set('n', '<leader>ar', ':AngryReviewer<CR>', {desc='Generate review recommendations'})
+vim.keymap.set('n', ']c', ':cn<CR>', {desc='Next quick-fix error'})
+vim.keymap.set('n', '[c', ':cp<CR>', {desc='Previous quick-fix error'})
+
+
 
