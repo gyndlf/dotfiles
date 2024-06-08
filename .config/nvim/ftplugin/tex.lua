@@ -23,6 +23,8 @@ vim.g.vimtex_quickfix_mode = 2  -- Open quickfix on errors, but don't become act
 vim.g.vimtex_quickfix_autoclose_after_keystrokes = 10  -- close after 10 keystrokes
 vim.g.vimtex_quickfix_open_on_warning = 1
 
+--let g:vimtex_latexmk_build_dir = "build"
+
 -- Set default compilation flags for latex
 vim.g.vimtex_compiler_latexmk = {
     options = {
