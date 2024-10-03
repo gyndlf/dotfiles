@@ -1,3 +1,7 @@
+# Custom Configuration
+# Modify the path on each computer locally in ~/.zshenv
+#
+
 autoload -U zmv
 
 # Path to your oh-my-zsh installation.
