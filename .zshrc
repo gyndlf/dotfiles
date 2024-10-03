@@ -54,7 +54,7 @@ function command_not_found_handler() { echo "lol, $1 doesn't exist" }
 # So that we can run binaries installed as sudo
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:/Users/james/.local/bin	# So that we can run lunarvim
-
+export PATH=$PATH:/home/thoughty2/.local/bin  # for zoxide
 
 # >>> juliaup initialize >>>
 
