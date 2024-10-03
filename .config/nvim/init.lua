@@ -91,7 +91,7 @@ require("lazy").setup({
     'Vigemus/iron.nvim',  -- Configure in each filetype
     'JuliaEditorSupport/julia-vim',
     'andymass/vim-matchup',
-    'L3MON4D3/LuaSnip',
+--    'L3MON4D3/LuaSnip',
     'anufrievroman/vim-angry-reviewer',  -- scientific document grammer suggestor
 })
 
@@ -117,7 +117,7 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Search in open buff
 
 -- Syntax highlighter (treesitter)
 require('nvim-treesitter.configs').setup {
-    ensure_installed = {"lua", "julia", "latex", "python"},
+    ensure_installed = {"lua", "julia", "python"},
     highlight = {
         enable = true,
         disable = function(lang, buf)  -- disable highlighting for large files
@@ -126,7 +126,11 @@ require('nvim-treesitter.configs').setup {
             if ok and stats and stats.size > max_filesize then
                 return true
             end
+            if lang == "latex" then  -- use vimtex for latex highlighting
+                return true
+            end
         end,
+        additional_vim_regex_highlighting = { "latex" },
     },
     incremental_selection = {  -- add some new motions
       enable = true,
@@ -183,9 +187,9 @@ vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>')
 
 -- Activate the snippets (mainly for latex)
 -- Uses the "SnipMate-Like" method
-local ls = require("luasnip")
-vim.keymap.set({"i"}, "<Tab>", function() ls.expand() end, {silent = true})
-require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
+--local ls = require("luasnip")
+--vim.keymap.set({"i"}, "<Tab>", function() ls.expand() end, {silent = true})
+--require("luasnip.loaders.from_snipmate").lazy_load({paths = "./snippets"})
 
 -- Angry reviewer (grammer)
 vim.g.AngryReviewerEnglish = 'british'
